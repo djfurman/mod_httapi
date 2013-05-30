@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:element name="document">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="params"/>
+                <xs:element name="variables"/>
+                <xs:element name="work">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="playback">
+                                <xs:annotation>
+                                    <xs:documentation>Plays a file and optionally collects input.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="bind">
+                                            <xs:annotation>
+                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="action">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="strip">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="file">
+                                        <xs:annotation>
+                                            <xs:documentation>The file</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="name">
+                                        <xs:annotation>
+                                            <xs:documentation>Parameter name into which to save result</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="error-file">
+                                        <xs:annotation>
+                                            <xs:documentation>Error file to play on invalid input</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change the new target URL</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="temp-action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change URL to submit to, just for the next loop</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="digit-timeout">
+                                        <xs:annotation>
+                                            <xs:documentation>Pause to wait for digits after file plays (when input bindings are present)</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="input-timeout">
+                                        <xs:annotation>
+                                            <xs:documentation>Pause to wait for more digits in a multi-digit input</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="loops">
+                                        <xs:annotation>
+                                            <xs:documentation>Maximum number of times to play the file when input bindings are present</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="asr-engine">
+                                        <xs:annotation>
+                                            <xs:documentation>Automatic speech recognition engine to use</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="asr-gramar">
+                                        <xs:annotation>
+                                            <xs:documentation>ASR grammar to use</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="record">
+                                <xs:annotation>
+                                    <xs:documentation>Records a file, optionally collecting input, then posts the file back to the target url.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="bind">
+                                            <xs:annotation>
+                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="action">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="strip">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="file"/>
+                                    <xs:attribute name="name"/>
+                                    <xs:attribute name="error-file"/>
+                                    <xs:attribute name="action"/>
+                                    <xs:attribute name="temp-action"/>
+                                    <xs:attribute name="digit-timeout"/>
+                                    <xs:attribute name="input-timeout"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="pause">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="bind">
+                                            <xs:annotation>
+                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="action">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="strip">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="speak">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="bind">
+                                            <xs:annotation>
+                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="action">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="strip">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="say">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="bind">
+                                            <xs:annotation>
+                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="action">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="strip">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="execute">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="bind">
+                                            <xs:annotation>
+                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="action">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="strip">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="sms">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="bind">
+                                            <xs:annotation>
+                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="action">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="strip">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="dial">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="bind">
+                                            <xs:annotation>
+                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="action">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="strip">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="recordCall">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="bind">
+                                            <xs:annotation>
+                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="action">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="strip">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="conference">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="bind">
+                                            <xs:annotation>
+                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="action">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="strip">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="hangup">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="bind">
+                                            <xs:annotation>
+                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="action">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="strip">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="break">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="bind">
+                                            <xs:annotation>
+                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="action">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="strip">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="log">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="bind">
+                                            <xs:annotation>
+                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="action">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="strip">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="continue">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="bind">
+                                            <xs:annotation>
+                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="action">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="strip">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="getVar">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="bind">
+                                            <xs:annotation>
+                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="action">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="strip">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="voicemail">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="bind">
+                                            <xs:annotation>
+                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="action">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="strip">
+                                                  <xs:annotation>
+                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute fixed="xml/freeswitch-httapi" name="type"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
