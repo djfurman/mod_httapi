@@ -113,16 +113,47 @@ Contains an expression</xs:documentation>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
-                                    <xs:attribute name="file"/>
-                                    <xs:attribute name="name"/>
-                                    <xs:attribute name="error-file"/>
-                                    <xs:attribute name="action"/>
-                                    <xs:attribute name="temp-action"/>
-                                    <xs:attribute name="digit-timeout"/>
-                                    <xs:attribute name="input-timeout"/>
+                                    <xs:attribute name="file">
+                                        <xs:annotation>
+                                            <xs:documentation>The file</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="name">
+                                        <xs:annotation>
+                                            <xs:documentation>Parameter name into which to save result</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="error-file">
+                                        <xs:annotation>
+                                            <xs:documentation>Error file to play on invalid input</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change the new target URL</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="temp-action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change url to submit to, just for the next loop</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="digit-timeout">
+                                        <xs:annotation>
+                                            <xs:documentation>Pause to wait for digits after file plays (when input bindings are present)</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="input-timeout">
+                                        <xs:annotation>
+                                            <xs:documentation>Pause to wait for more digits in a multi-digit input</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="pause">
+                                <xs:annotation>
+                                    <xs:documentation>Waits for input for a specific amount of time</xs:documentation>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="bind">
@@ -145,9 +176,52 @@ Contains an expression</xs:documentation>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="milliseconds" type="xs:long">
+                                        <xs:annotation>
+                                            <xs:documentation>Numver of milliseconds to pause</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="name">
+                                        <xs:annotation>
+                                            <xs:documentation>Parameter name into which to save result</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="error-file">
+                                        <xs:annotation>
+                                            <xs:documentation>Error file to play on invalid input</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change url to submit to, just for the next loop</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="temp-action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change url to submit to, just for the next loop</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="digit-timeout">
+                                        <xs:annotation>
+                                            <xs:documentation>Pause to wait for digits after file plays (when input bindings are present)</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="input-timeout">
+                                        <xs:annotation>
+                                            <xs:documentation>Pause to wait for more digits in a multi-digit input</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="loops">
+                                        <xs:annotation>
+                                            <xs:documentation>Maximum number of times to play the file when input bindings are present</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="speak">
+                                <xs:annotation>
+                                    <xs:documentation>Read Text to Speech with optional inputs.</xs:documentation>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="bind">
@@ -170,9 +244,62 @@ Contains an expression</xs:documentation>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="file">
+                                        <xs:annotation>
+                                            <xs:documentation>The file</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="name">
+                                        <xs:annotation>
+                                            <xs:documentation>Paramerter name into which to save result</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="error-file">
+                                        <xs:annotation>
+                                            <xs:documentation>Error file to play on invalid input</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change the new target url</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="temp-action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change url to submit to, just for the next loop</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="digit-timeout">
+                                        <xs:annotation>
+                                            <xs:documentation>Pause to wait for digits after file plays (when input bindings are present)</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="input-timeout">
+                                        <xs:annotation>
+                                            <xs:documentation>Pause to wait for more digits in a multi-digit input</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="loops">
+                                        <xs:annotation>
+                                            <xs:documentation>Maximum number of times to play the file when input bdinings are present</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="engine">
+                                        <xs:annotation>
+                                            <xs:documentation>Text-to-speech engine to use</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="voice">
+                                        <xs:annotation>
+                                            <xs:documentation>tts voice to use</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="say">
+                                <xs:annotation>
+                                    <xs:documentation>Use the FreeSWITCH 'say' engine to iterate sounds to simulate a human speaker.</xs:documentation>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="bind">
@@ -195,6 +322,66 @@ Contains an expression</xs:documentation>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="file">
+                                        <xs:annotation>
+                                            <xs:documentation>The file</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="name">
+                                        <xs:annotation>
+                                            <xs:documentation>Parameter name into which to save result</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="error-file">
+                                        <xs:annotation>
+                                            <xs:documentation>Error file to play on invalid input</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change the new target url</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="temp-action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change url to submit to, just for the next loop</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="digit-timeout">
+                                        <xs:annotation>
+                                            <xs:documentation>Pause to wait for digits after file plays (when input bindings are present)</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="input-timeout">
+                                        <xs:annotation>
+                                            <xs:documentation>Pause to wait for more digits in a multi-digit input</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="loops">
+                                        <xs:annotation>
+                                            <xs:documentation>Maximum number of times to play the file when input bindings are prsent</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="language">
+                                        <xs:annotation>
+                                            <xs:documentation>language to speak</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="type">
+                                        <xs:annotation>
+                                            <xs:documentation>type (fs param)</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="method">
+                                        <xs:annotation>
+                                            <xs:documentation>method (fs param)</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="gender">
+                                        <xs:annotation>
+                                            <xs:documentation>gender (fs param)</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="execute">
