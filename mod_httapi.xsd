@@ -35,7 +35,7 @@ Contains an expression</xs:documentation>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
-                                    <xs:attribute name="file">
+                                    <xs:attribute name="file" type="xs:string">
                                         <xs:annotation>
                                             <xs:documentation>The file</xs:documentation>
                                         </xs:annotation>
@@ -385,6 +385,9 @@ Contains an expression</xs:documentation>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="execute">
+                                <xs:annotation>
+                                    <xs:documentation>Execute a FreeSWITCH app.</xs:documentation>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="bind">
@@ -407,9 +410,32 @@ Contains an expression</xs:documentation>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="application">
+                                        <xs:annotation>
+                                            <xs:documentation>The app to run</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change the new target url</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="temp-action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change url to submit to, just for the next loop</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="data">
+                                        <xs:annotation>
+                                            <xs:documentation>Alternative source for app data</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="sms">
+                                <xs:annotation>
+                                    <xs:documentation>Send a SMS (Short Message Service) message.</xs:documentation>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="bind">
@@ -432,10 +458,28 @@ Contains an expression</xs:documentation>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="to">
+                                        <xs:annotation>
+                                            <xs:documentation>The destination phone number</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change the new target url</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="temp-action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change url to submit to, just for the next loop</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="dial">
-                                <xs:complexType>
+                                <xs:annotation>
+                                    <xs:documentation>Place an outbound call or </xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType mixed="true">
                                     <xs:sequence>
                                         <xs:element name="bind">
                                             <xs:annotation>
@@ -457,9 +501,42 @@ Contains an expression</xs:documentation>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="context">
+                                        <xs:annotation>
+                                            <xs:documentation>Dialplan context.</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="dialplan">
+                                        <xs:annotation>
+                                            <xs:documentation>Dialplan dialplan.</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="caller-id-name">
+                                        <xs:annotation>
+                                            <xs:documentation>Caller ID Name</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="caller-id-number">
+                                        <xs:annotation>
+                                            <xs:documentation>Caller ID Number</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change the new target url</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="temp-action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change url to submit to, just for the next loop</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="recordCall">
+                                <xs:annotation>
+                                    <xs:documentation>Begin recording the call audio. The file will be posted when the call ends.</xs:documentation>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="bind">
@@ -482,9 +559,27 @@ Contains an expression</xs:documentation>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="limit" type="xs:long">
+                                        <xs:annotation>
+                                            <xs:documentation>Timeout in seconds</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="name">
+                                        <xs:annotation>
+                                            <xs:documentation>Name to use for input values</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="action">
+                                        <xs:annotation>
+                                            <xs:documentation>URL action to use</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="conference">
+                                <xs:annotation>
+                                    <xs:documentation>Start a conference call.</xs:documentation>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="bind">
@@ -507,9 +602,22 @@ Contains an expression</xs:documentation>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="profile">
+                                        <xs:annotation>
+                                            <xs:documentation>Conference profile to use</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change the new target url</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="hangup">
+                                <xs:annotation>
+                                    <xs:documentation>Hangup the call.</xs:documentation>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="bind">
@@ -532,9 +640,22 @@ Contains an expression</xs:documentation>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="cause">
+                                        <xs:annotation>
+                                            <xs:documentation>Hangup cause</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change teh new target url</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="break">
+                                <xs:annotation>
+                                    <xs:documentation>Exit the httapi applicaiton and contine in the dialplan</xs:documentation>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="bind">
@@ -560,6 +681,9 @@ Contains an expression</xs:documentation>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="log">
+                                <xs:annotation>
+                                    <xs:documentation>Exit the httapi application and continue in the dialplan</xs:documentation>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="bind">
@@ -582,9 +706,27 @@ Contains an expression</xs:documentation>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="level">
+                                        <xs:annotation>
+                                            <xs:documentation>The log level to use</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="clean">
+                                        <xs:annotation>
+                                            <xs:documentation>If true do not print log prefix</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change the new target url</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="continue">
+                                <xs:annotation>
+                                    <xs:documentation>Just continue (no-op).</xs:documentation>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="bind">
@@ -607,9 +749,17 @@ Contains an expression</xs:documentation>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change the new target url</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="getVar">
+                                <xs:annotation>
+                                    <xs:documentation>Get a Channel variable (depends on permissions).</xs:documentation>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="bind">
@@ -632,9 +782,27 @@ Contains an expression</xs:documentation>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change the new target url</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="temp-action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change url to submit to, just for the next loop</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="permanent">
+                                        <xs:annotation>
+                                            <xs:documentation>Add as a permanent param or just once</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="voicemail">
+                                <xs:annotation>
+                                    <xs:documentation>Check or record voice mail</xs:documentation>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="bind">
@@ -657,13 +825,48 @@ Contains an expression</xs:documentation>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change the new target url</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="temp-action">
+                                        <xs:annotation>
+                                            <xs:documentation>Change url to submit to, just for the next loop</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="check" type="xs:boolean" use="optional">
+                                        <xs:annotation>
+                                            <xs:documentation>true to check, omit to record a message for this mailbox</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="auth-only">
+                                        <xs:annotation>
+                                            <xs:documentation>authenticate only and continue</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="profile">
+                                        <xs:annotation>
+                                            <xs:documentation>profile to use, omit for default</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="domain">
+                                        <xs:annotation>
+                                            <xs:documentation>domain to use, omit for global domain variable</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="id">
+                                        <xs:annotation>
+                                            <xs:documentation>mailbox id to use, omit to prompt for id</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
                         </xs:choice>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
-            <xs:attribute fixed="xml/freeswitch-httapi" name="type"/>
+            <xs:attribute fixed="xml/freeswitch-httapi" name="type" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>
