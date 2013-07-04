@@ -1,46 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="0.1">
 
     <xs:element name="document">
+        <xs:annotation>
+            <xs:documentation>Contains all httapi XML data elements for the API.</xs:documentation>
+            <xs:documentation>Root Schema Element.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="params"/>
-                <xs:element name="variables"/>
+                <xs:element name="params" maxOccurs="unbounded" minOccurs="0"/>
+                <xs:element name="variables" maxOccurs="unbounded" minOccurs="0"/>
                 <xs:element name="work">
                     <xs:complexType>
                         <xs:choice>
-                            <xs:element name="playback">
+                            <xs:element name="playback" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>Plays a file and optionally collects input.</xs:documentation>
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="bind">
-                                            <xs:annotation>
-                                                <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
-Contains an expression</xs:documentation>
-                                                <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
-                                            </xs:annotation>
-                                            <xs:complexType>
-                                                <xs:attribute name="action">
-                                                  <xs:annotation>
-                                                  <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
-                                                  </xs:annotation>
-                                                </xs:attribute>
-                                                <xs:attribute name="strip">
-                                                  <xs:annotation>
-                                                  <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
-                                                  </xs:annotation>
-                                                </xs:attribute>
-                                            </xs:complexType>
-                                        </xs:element>
+                                        <xs:element ref="bind"/>
                                     </xs:sequence>
-                                    <xs:attribute name="file" type="xs:string">
+                                    <xs:attribute name="file" type="xs:string" use="required">
                                         <xs:annotation>
                                             <xs:documentation>The file</xs:documentation>
                                         </xs:annotation>
                                     </xs:attribute>
-                                    <xs:attribute name="name">
+                                    <xs:attribute name="name" type="xs:string" use="optional">
                                         <xs:annotation>
                                             <xs:documentation>Parameter name into which to save result</xs:documentation>
                                         </xs:annotation>
@@ -49,45 +35,52 @@ Contains an expression</xs:documentation>
                                         <xs:annotation>
                                             <xs:documentation>Error file to play on invalid input</xs:documentation>
                                         </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:pattern
+                                                  value="[http://|https://|/]{1}.*\.[(wav)|(mp3)]+"
+                                                />
+                                            </xs:restriction>
+                                        </xs:simpleType>
                                     </xs:attribute>
-                                    <xs:attribute name="action">
+                                    <xs:attribute name="action" type="xs:string">
                                         <xs:annotation>
                                             <xs:documentation>Change the new target URL</xs:documentation>
                                         </xs:annotation>
                                     </xs:attribute>
-                                    <xs:attribute name="temp-action">
+                                    <xs:attribute name="temp-action" type="xs:string">
                                         <xs:annotation>
                                             <xs:documentation>Change URL to submit to, just for the next loop</xs:documentation>
                                         </xs:annotation>
                                     </xs:attribute>
-                                    <xs:attribute name="digit-timeout">
+                                    <xs:attribute name="digit-timeout" type="xs:positiveInteger">
                                         <xs:annotation>
                                             <xs:documentation>Pause to wait for digits after file plays (when input bindings are present)</xs:documentation>
                                         </xs:annotation>
                                     </xs:attribute>
-                                    <xs:attribute name="input-timeout">
+                                    <xs:attribute name="input-timeout" type="xs:positiveInteger">
                                         <xs:annotation>
                                             <xs:documentation>Pause to wait for more digits in a multi-digit input</xs:documentation>
                                         </xs:annotation>
                                     </xs:attribute>
-                                    <xs:attribute name="loops">
+                                    <xs:attribute name="loops" type="xs:positiveInteger">
                                         <xs:annotation>
                                             <xs:documentation>Maximum number of times to play the file when input bindings are present</xs:documentation>
                                         </xs:annotation>
                                     </xs:attribute>
-                                    <xs:attribute name="asr-engine">
+                                    <xs:attribute name="asr-engine" type="xs:string">
                                         <xs:annotation>
                                             <xs:documentation>Automatic speech recognition engine to use</xs:documentation>
                                         </xs:annotation>
                                     </xs:attribute>
-                                    <xs:attribute name="asr-gramar">
+                                    <xs:attribute name="asr-gramar" type="xs:string">
                                         <xs:annotation>
                                             <xs:documentation>ASR grammar to use</xs:documentation>
                                         </xs:annotation>
                                     </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="record">
+                            <xs:element name="record" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>Records a file, optionally collecting input, then posts the file back to the target url.</xs:documentation>
                                 </xs:annotation>
@@ -150,7 +143,7 @@ Contains an expression</xs:documentation>
                                     </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="pause">
+                            <xs:element name="pause" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>Waits for input for a specific amount of time</xs:documentation>
                                 </xs:annotation>
@@ -218,7 +211,7 @@ Contains an expression</xs:documentation>
                                     </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="speak">
+                            <xs:element name="speak" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>Read Text to Speech with optional inputs.</xs:documentation>
                                 </xs:annotation>
@@ -296,7 +289,7 @@ Contains an expression</xs:documentation>
                                     </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="say">
+                            <xs:element name="say" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>Use the FreeSWITCH 'say' engine to iterate sounds to simulate a human speaker.</xs:documentation>
                                 </xs:annotation>
@@ -384,7 +377,7 @@ Contains an expression</xs:documentation>
                                     </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="execute">
+                            <xs:element name="execute" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>Execute a FreeSWITCH app.</xs:documentation>
                                 </xs:annotation>
@@ -432,7 +425,7 @@ Contains an expression</xs:documentation>
                                     </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="sms">
+                            <xs:element name="sms" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>Send a SMS (Short Message Service) message.</xs:documentation>
                                 </xs:annotation>
@@ -475,7 +468,7 @@ Contains an expression</xs:documentation>
                                     </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="dial">
+                            <xs:element name="dial" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>Place an outbound call or </xs:documentation>
                                 </xs:annotation>
@@ -533,7 +526,7 @@ Contains an expression</xs:documentation>
                                     </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="recordCall">
+                            <xs:element name="recordCall" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>Begin recording the call audio. The file will be posted when the call ends.</xs:documentation>
                                 </xs:annotation>
@@ -576,7 +569,7 @@ Contains an expression</xs:documentation>
                                     </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="conference">
+                            <xs:element name="conference" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>Start a conference call.</xs:documentation>
                                 </xs:annotation>
@@ -614,7 +607,7 @@ Contains an expression</xs:documentation>
                                     </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="hangup">
+                            <xs:element name="hangup" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>Hangup the call.</xs:documentation>
                                 </xs:annotation>
@@ -652,7 +645,7 @@ Contains an expression</xs:documentation>
                                     </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="break">
+                            <xs:element name="break" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>Exit the httapi applicaiton and contine in the dialplan</xs:documentation>
                                 </xs:annotation>
@@ -680,7 +673,7 @@ Contains an expression</xs:documentation>
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="log">
+                            <xs:element name="log" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>Exit the httapi application and continue in the dialplan</xs:documentation>
                                 </xs:annotation>
@@ -723,7 +716,7 @@ Contains an expression</xs:documentation>
                                     </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="continue">
+                            <xs:element name="continue" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>Just continue (no-op).</xs:documentation>
                                 </xs:annotation>
@@ -756,7 +749,7 @@ Contains an expression</xs:documentation>
                                     </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="getVar">
+                            <xs:element name="getVar" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>Get a Channel variable (depends on permissions).</xs:documentation>
                                 </xs:annotation>
@@ -799,7 +792,7 @@ Contains an expression</xs:documentation>
                                     </xs:attribute>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="voicemail">
+                            <xs:element name="voicemail" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>Check or record voice mail</xs:documentation>
                                 </xs:annotation>
@@ -867,6 +860,25 @@ Contains an expression</xs:documentation>
                 </xs:element>
             </xs:sequence>
             <xs:attribute fixed="xml/freeswitch-httapi" name="type" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="bind">
+        <xs:annotation>
+            <xs:documentation>Several of the work tags that indicate they support bindings can contain one or more bind tags that function in similar fashion to bind_digit_action
+Contains an expression</xs:documentation>
+            <xs:documentation>Srigg reported that multiple <bind strip=""/> tags are needed when you want it to post digits after the timeout expired (in fact, as many tags as the quantity of digits expected)</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="action" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>a specific url to go to next if the binding is dialed</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="strip" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>a character to strip from the result string, such as #</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 </xs:schema>
